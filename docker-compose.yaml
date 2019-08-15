@@ -31,9 +31,9 @@ services:
       context: .
       dockerfile: Dockerfile
     command: ["python", "app/main.py"]
-    network_mode: host
     ports:
       - "8000:8000"
+    network_mode: host
 
 volumes:
   postgres_data:
