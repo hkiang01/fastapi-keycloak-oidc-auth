@@ -1,14 +1,13 @@
 import json
 import logging
 
+import jwt
 import requests
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.responses import RedirectResponse
-
-import jwt
 
 APP_BASE_URL = "http://localhost:8000/"
 KEYCLOAK_BASE_URL = "http://localhost:8080"
