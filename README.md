@@ -5,3 +5,4 @@
     ![alt text](images/app_urls.png "app URLs")
 4. Create a user with username and password set to "test"
 5. `docker-compose down && docker-compose build && docker-compose up`
+6. Navigate to `localhost:8000/login`
