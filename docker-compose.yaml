@@ -6,5 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     command: ["python", "app/main.py"]
+    network_mode: host
     ports:
       - "8000:8000"
