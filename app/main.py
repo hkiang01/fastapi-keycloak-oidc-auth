@@ -1,10 +1,11 @@
 import json
 import logging
+from typing import Dict
 
 import jwt
 import requests
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.responses import RedirectResponse
@@ -27,12 +28,12 @@ app = FastAPI()
 
 
 @app.get("/login")
-async def login():
+async def login() -> RedirectResponse:
     return RedirectResponse(AUTH_URL)
 
 
 @app.get("/auth")
-async def auth(code: str):
+async def auth(code: str) -> RedirectResponse:
     payload = (
         f"grant_type=authorization_code&code={code}"
         f"&redirect_uri={APP_BASE_URL}&client_id=app"
@@ -41,11 +42,6 @@ async def auth(code: str):
     token_response = requests.request(
         "POST", TOKEN_URL, data=payload, headers=headers
     )
-    if token_response.status_code != 200:
-        return HTTPException(
-            status_code=token_response.status_code,
-            detail=token_response.content,
-        )
 
     token_body = json.loads(token_response.content)
     access_token = token_body["access_token"]
@@ -56,7 +52,7 @@ async def auth(code: str):
 
 
 @app.get("/")
-async def root(request: Request,):
+async def root(request: Request,) -> Dict:
     authorization: str = request.cookies.get("Authorization")
     scheme, credentials = get_authorization_scheme_param(authorization)
 
