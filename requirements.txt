@@ -1,2 +1,4 @@
 fastapi
+pyjwt[crypto]
+requests
 uvicorn
