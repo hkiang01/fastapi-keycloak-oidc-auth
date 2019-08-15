@@ -12,7 +12,10 @@ import jwt
 
 APP_BASE_URL = "http://localhost:8000/"
 KEYCLOAK_BASE_URL = "http://localhost:8080"
-AUTH_URL = f"{KEYCLOAK_BASE_URL}/auth/realms/Clients/protocol/openid-connect/auth?client_id=app&response_type=code"
+AUTH_URL = (
+    f"{KEYCLOAK_BASE_URL}/auth/realms/Clients"
+    "/protocol/openid-connect/auth?client_id=app&response_type=code"
+)
 TOKEN_URL = (
     f"{KEYCLOAK_BASE_URL}/auth/realms/Clients/protocol/openid-connect/token"
 )
